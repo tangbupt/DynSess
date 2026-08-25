@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+
+% Change "review" to "final" to generate the final (sometimes called camera-ready) version.
+% Change to "preprint" to generate a non-anonymous version with page numbers.
+\usepackage[final]{acl}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{graphicx}  
+\usepackage{setspace}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{booktabs}
+\usepackage{CJKutf8}
+\usepackage{pifont} % 用于引入高级勾叉符号
+\usepackage[table]{xcolor} % 用于表格底色（如果之前没加的话）
+
+\newcommand{\cmark}{\ding{51}} % 定义对号
+\newcommand{\xmark}{\ding{55}} % 定义叉号
+\usepackage[most]{tcolorbox}
+\usepackage[table]{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage[normalem]{ulem} 
+\usepackage{xcolor}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\newcommand{\myitem}{\par\vspace{1pt}\noindent\hangindent=2em\hangafter=1\textbullet~}
+% \definecolor{GradientG1}{RGB}{232, 245, 233}  % 极浅绿 (类似 green!10)
+% \definecolor{GradientG2}{RGB}{200, 230, 201}  % 浅绿 (类似 lightgreen)
+% \definecolor{GradientG3}{RGB}{165, 214, 167}  % 中绿
+% \definecolor{GradientG4}{RGB}{102, 187, 106}  % 深绿
+% \definecolor{GradientG5}{RGB}{67, 160, 71}    % 浓绿 (注意文字对比度)
+\definecolor{MyWordColor1}{RGB}{252, 245, 233}
+\definecolor{MyWordColor2}{RGB}{245, 234, 212}
+% \newcommand{\cmark}{\checkmark}
+% \newcommand{\xmark}{\ding{55}}
+
+\usepackage{mathtools}
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+% \usepackage{float}
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+%Including images in your LaTeX document requires adding
+%additional package(s)
+\usepackage{graphicx}
+
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{DynSess: Dynamic Session-Level Evaluation and Optimization Framework for Role-Playing Agents}
+
+% Author information can be set in various styles:
+% For several authors from the same institution:
+% \author{Author 1 \and ... \and Author n \\
+%         Address line \\ ... \\ Address line}
+% if the names do not fit well on one line use
+%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
+% For authors from different institutions:
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \And  ... \And
+%         Author n \\ Address line \\ ... \\ Address line}
+% To start a separate ``row'' of authors use \AND, as in
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \AND
+%         Author 2 \\ Address line \\ ... \\ Address line \And
+%         Author 3 \\ Address line \\ ... \\ Address line}
+
+% \author{First Author \\
+%   Affiliation / Address line 1 \\
+%   Affiliation / Address line 2 \\
+%   Affiliation / Address line 3 \\
+%   \texttt{email@domain} \\\And
+%   Second Author \\
+%   Affiliation / Address line 1 \\
+%   Affiliation / Address line 2 \\
+%   Affiliation / Address line 3 \\
+%   \texttt{email@domain} \\}
+
+\author{
+  \textbf{Rongsheng Zhang}\textsuperscript{1,2}\thanks{Equal contribution.},
+  \textbf{Jiji Tang}\textsuperscript{2}\footnotemark[1],
+  \textbf{Junnan Ren}\textsuperscript{3}\footnotemark[1],
+  \textbf{Zuyi Bao}\textsuperscript{2},
+  \\
+  \textbf{Weijie Chen}\textsuperscript{2},
+  \textbf{Ruofan Hu}\textsuperscript{1},
+  \textbf{Tangjie Lv}\textsuperscript{2},
+  \textbf{Zhou Zhao}\textsuperscript{1},
+  \textbf{Yan Zhang}\textsuperscript{3}\thanks{Corresponding author.}
+\\
+\\
+  \textsuperscript{1}\textit{Zhejiang University} \quad
+  \textsuperscript{2}\textit{Fuxi AI Lab, NetEase Inc.} \\
+  \textsuperscript{3}\textit{Key Laboratory of Multimedia Trusted Perception and Efficient Computing,} \\
+  \textit{Ministry of Education of China, Xiamen University} \\
+{\small\texttt{\{njuzrs,tangjiji\_bupt\}@163.com, renjunnan@stu.xmu.edu.cn, bzhy986@xmu.edu.cn}}
+}
+
+%\author{
+%  \textbf{First Author\textsuperscript{1}},
+%  \textbf{Second Author\textsuperscript{1,2}},
+%  \textbf{Third T. Author\textsuperscript{1}},
+%  \textbf{Fourth Author\textsuperscript{1}},
+%\\
+%  \textbf{Fifth Author\textsuperscript{1,2}},
+%  \textbf{Sixth Author\textsuperscript{1}},
+%  \textbf{Seventh Author\textsuperscript{1}},
+%  \textbf{Eighth Author \textsuperscript{1,2,3,4}},
+%\\
+%  \textbf{Ninth Author\textsuperscript{1}},
+%  \textbf{Tenth Author\textsuperscript{1}},
+%  \textbf{Eleventh E. Author\textsuperscript{1,2,3,4,5}},
+%  \textbf{Twelfth Author\textsuperscript{1}},
+%\\
+%  \textbf{Thirteenth Author\textsuperscript{3}},
+%  \textbf{Fourteenth F. Author\textsuperscript{2,4}},
+%  \textbf{Fifteenth Author\textsuperscript{1}},
+%  \textbf{Sixteenth Author\textsuperscript{1}},
+%\\
+%  \textbf{Seventeenth S. Author\textsuperscript{4,5}},
+%  \textbf{Eighteenth Author\textsuperscript{3,4}},
+%  \textbf{Nineteenth N. Author\textsuperscript{2,5}},
+%  \textbf{Twentieth Author\textsuperscript{1}}
+%\\
+%\\
+%  \textsuperscript{1}Affiliation 1,
+%  \textsuperscript{2}Affiliation 2,
+%  \textsuperscript{3}Affiliation 3,
+%  \textsuperscript{4}Affiliation 4,
+%  \textsuperscript{5}Affiliation 5
+%\\
+%  \small{
+%    \textbf{Correspondence:} \href{mailto:email@domain}{email@domain}
+%  }
+%}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+% Role-playing with large language models requires maintaining character identity and interaction quality throughout multi-turn conversations. However, existing methods are mostly optimized and evaluated at the turn level, which overlooks the session-level nature of dynamic role-playing. In this work, we introduce DYNSESS-EVAL, a unified protocol for evaluating role-playing models through multi-turn interactions, and DynSess-Character, a session-level training framework for improving long-horizon character modeling. DynSess-Character adopts a three-stage pipeline consisting of supervised fine-tuning, session-level rejection sampling, and session-level preference optimization (SPO). DYNSESS-EVAL assesses each session from four dimensions: Interactive Ability, Human-likeness, Role Consistency, and Contextual Coherence. Experiments on held-out persona-context pairs and a human-labeled session-level benchmark show that DYNSESS-EVAL aligns well with human judgments, and that DynSess-Character consistently outperforms strong role-playing and general-purpose baselines across multiple model scales. These results highlight the importance of session-level evaluation and optimization for building more robust and realistic role-playing agents.
+
+% zrs
+% Role-playing with large language models is fundamentally a session-level problem, requiring agents to maintain character identity and interaction quality over extended multi-turn conversations. However, existing methods are still largely designed around turn-level evaluation and optimization, limiting their ability to capture long-horizon role-playing quality. We propose DYNSESS, a unified session-level framework for role-playing agents that integrates both evaluation and optimization. DYNSESS includes a dynamic evaluation protocol for scoring complete dialogue sessions along interpretable session-level dimensions, and a training framework that improves role-playing behavior using supervision over complete dialogue trajectories. Experiments on held-out persona-context pairs and a human-labeled session-level benchmark show that DYNSESS aligns more closely with human judgments than existing baselines and consistently improves session-level role-playing performance across multiple model scales. Our results demonstrate the importance of session-level modeling for building more robust role-playing agents.
+
+%Role-playing with large language models is fundamentally a session-level problem, requiring agents to maintain character identity and interaction quality over extended multi-turn conversations. However, existing methods are still largely designed around turn-level evaluation and optimization, limiting their ability to capture long-horizon role-playing quality. We propose DYNSESS, a unified session-level framework that couples dynamic evaluation, reward-driven data construction, and session-level optimization for role-playing agents. DynSess-Eval evaluates complete dialogue sessions with rubric-anchored dimensions targeting long-horizon behaviors. Using its session-level rewards, we construct high-quality training trajectories via multi-turn lookahead search and train DynSess-Character with two alternative optimization variants, DSPO and GSRPO. Experiments show that DynSess-Eval better aligns with human judgments than existing evaluators. Human blind evaluation further shows that DynSess-Character is comparable to best character model with ~6× fewer parameters, while maintaining strong role consistency and interactive ability. These results highlight session-level modeling as a practical foundation for robust role-playing agents.
+
+
+Role-playing with large language models is fundamentally a \textit{session-level} task, requiring agents to sustain character identity and interaction quality across extended multi-turn conversations. Yet existing evaluation and optimization methods remain largely turn-level, failing to capture long-horizon quality. We propose \textbf{DynSess}, a unified session-level framework for role-playing agents. \textbf{DynSess-Eval} scores complete dialogue sessions via rubrics targeting long-horizon behaviors. Leveraging its session-level rewards, we construct high-quality training trajectories through multi-turn lookahead search and train \textbf{DynSess-Character} with two complementary variants: DSPO (off-policy) and GSRPO (on-policy). Experiments show that DynSess-Eval aligns with human judgments substantially better than prior evaluators, and blind human evaluation further shows that DynSess-Character matches the strongest character model despite using substantially fewer parameters, while maintaining strong role consistency and interactive ability. Our dataset and code will be released to facilitate future research. 
+
+%To facilitate future research, we release our dataset and code at \url{xxx}.
+
+% Experiments on held-out persona-context pairs and a human-labeled session-level benchmark show that DYNSESS aligns more closely with human judgments than existing baselines and consistently improves session-level role-playing performance across multiple model scales.
+
+
+% Recent advances in large language models have greatly promoted the application of role-play agents. However, existing evaluation methods mainly focus on static, single-turn or pseudo-multi-turn responses, which cannot reflect the dynamic and long-term characteristics of real user interactions or support interpretable multi-dimensional analysis. To solve this problem, we propose DYNSESSEval, a dynamic session-level evaluation framework based on multi-agent interaction (user-agent and character-agent) to simulate realistic and fully dynamic conversations. We evaluate agents from four key dimensions—human-likeness, character consistency, context coherence, and proactivity—and achieve much higher correlation with human expert judgments than previous methods. In addition, considering the limitations of current models in long-term interaction, we present Session-level Reinforcement Learning (SRL). By using multi-agent simulation to generate long-context rollouts and optimizing session-level rewards, SRL directly enhances the agent’s long-term dialogue ability. Extensive experiments show that our evaluation framework establishes a new benchmark for multi-turn evaluation, and our SRL-based role-play agent achieves state-of-the-art performance.
+\end{abstract}
+
+
+\input{latex/Paper/Introduction}
+\input{latex/Paper/RelatedWork}
+\input{latex/Paper/Method}
+\input{latex/Paper/Experiment}
+
+% \clearpage
+\section{Limitations}
+Our work has several limitations worth noting.
+First, DynSess-Eval relies on a single LLM (Gemini-3-Flash) as the backbone judge. Although its rubric-anchored design substantially improves alignment with human judgments, the residual auto--human discrepancies observed in Section~\ref{sec:exp-eval} suggest that no single judge model can fully substitute for human evaluation. Second, our experiments cap session length at 50 turns. Although Section~\ref{sec:exp-eval} shows that evaluation quality plateaus and slightly degrades in excessively long contexts, real-world role-playing deployments may involve substantially longer interactions, and extending our framework to such regimes requires further investigation.
+
+
+\section{Ethics Statement}
+Our work involves human annotators and LLM-generated dialogues, raising several ethical considerations. All human annotators participated voluntarily and were compensated fairly above local standards. Annotators were informed of the research purpose and their right to withdraw at any time. The character personas used in our experiments are drawn from publicly available sources (e.g., fictional characters, public figures). We do not generate personas that impersonate private individuals or promote harmful stereotypes. While role-playing agents can serve beneficial purposes such as entertainment and social companionship, we acknowledge the potential for misuse, including generating misleading or emotionally manipulative content. We advocate for deploying such systems with appropriate safeguards.
+
+
+% Bibliography entries for the entire Anthology, followed by custom entries
+%\bibliography{anthology,custom}
+% Custom bibliography entries only
+
+
+\bibliography{custom}
+
+
+% \clearpage
+\appendix
+\input{latex/Paper/Appendix}
+
+
+
+\end{document}

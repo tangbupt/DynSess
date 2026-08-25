@@ -1,0 +1,31 @@
+[
+  {
+    "name": "multi-dpo",
+    "model": "qwen3-32B-multi-dpo"
+  },
+  {
+    "name": "multi-grpo",
+    "model": "qwen3-ours-grpo-0518-step-50"
+  },
+  {
+    "name": "gpt-5.4",
+    "model": "gpt-5.4",
+    "system_suffix": "请保持每次回复在30-70字之间，使用单段回复。"
+  },
+  {
+    "name": "claude-sonnet-4.6",
+    "model": "claude-sonnet-4-6",
+    "system_suffix": "请保持每次回复在30-70字之间，使用单段回复。"
+  },
+  {
+    "name": "gemini-3-pro",
+    "model": "gemini-3-pro-preview",
+    "system_suffix": "请保持每次回复在30-70字之间，使用单段回复。",
+    "extra_body": {
+      "thinkingConfig": {
+        "includeThoughts": true,
+        "thinkingLevel": "low"
+      }
+    }
+  }
+]

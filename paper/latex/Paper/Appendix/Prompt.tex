@@ -1,0 +1,341 @@
+\onecolumn
+% \raggedbottom
+
+\section{Prompt Templates}
+\label{app:prompt}
+\subsection{Prompt for Dynamic Session Evalution}
+\label{app:prompt_eval}
+
+\begin{tcolorbox}[
+    breakable,
+    colback=MyWordColor1,
+    colframe=black,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    title={\textbf{DynSess-Eval Prompt: Interactive Ability}},
+    fontupper=\small
+]
+
+You are a role-playing evaluation expert, highly sensitive to the pacing, tension, and narrative progression of a conversation. You believe that merely "being able to reply" is just a passing grade. Your default baseline score is 3 points.
+
+\textbf{Current Evaluation Dimension: [Interactive Ability (Overall Multi-turn Performance)]}\\
+Maximum score: \textbf{5 points}, Minimum score: \textbf{1 point}, \textbf{Default baseline score: 3 points}.
+
+\textbf{[Character Profile]}:\\
+{[}\{\textit{character\_profile}\}{]}
+
+\textbf{[Dialogue History]}:\\
+{[}\{\textit{dialogue\_history}\}{]}
+
+\textbf{[Multi-turn Dialogue to Evaluate]}:\\
+{[}\{\textit{dialogue}\}{]}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\textbf{Scoring Dimension and Rubric: Interactive Ability}\\
+\textit{Core Question: Throughout the multi-turn interaction, did the AI demonstrate excellent pacing control and narrative momentum, or did it rely entirely on the user to drag the conversation forward?}\\
+\textbf{The starting score is 3 points. You must find explicit evidence to raise or lower the score.}
+
+\textbf{[Automatic Deduction Criteria]}\\
+$\bullet$ Extremely passive narrative progression: Across the multi-turn dialogue, almost all new topics, new actions, and new conflicts are initiated by the user; the AI only responds.\\
+$\bullet$ Loss of pacing control: The plot develops too fast (e.g., entering the climax/intimate phase directly with no buildup) or too slow (e.g., padding the word count by exchanging pleasantries in place for multiple consecutive turns).\\
+$\bullet$ Ending with closed-off expressions multiple times, causing the user to repeatedly face the awkward situation of "not knowing how to reply" across multiple turns.\\
+$\bullet$ Lack of information gain: After multiple turns of dialogue, there is no substantive progress in the relationship between the two parties or the state of events.
+
+\textbf{1 Point (Extremely Poor)}: Extremely perfunctory or passive, completely acting as a "conversation killer"; plot is completely stagnant; disastrous pacing that thoroughly ruins the experience.\\
+\textbf{2 Points (Poor)}: Basically stuck in a purely passive Q\&A mode; requires the user to laboriously drag the conversation to barely advance the plot; obvious pacing improprieties exist.\\
+\textbf{3 Points (Baseline/Pass)}: Can smoothly complete the multi-turn dialogue without causing the conversation to break. \textbf{However, the overall interaction lacks tension. The AI acts as a follower, failing to actively create surprises or suspense, and the plot development relies entirely on the quality of the user's input---a mediocre interaction.}\\
+\textbf{4 Points (Good)}: Capable of back-and-forth exchanges across multiple turns, naturally introducing new topics or actions multiple times; interaction pacing is reasonable, buildup is well-executed, and the relationship or events have a clear trajectory of progression.\\
+\textbf{5 Points (Excellent)}: The AI is an excellent \textbf{"co-creator and guide"}; it accurately controls the pacing across multiple turns, balancing tension and relaxation; it can actively plant suspense, create reasonable conflicts, and push them to a climax, giving the user a strong sense of immersion and a desire to "binge-read" the next developments. \textbf{After reading, you feel this is a brilliant two-person dance, rather than a one-sided tug-of-war.}
+
+\textbf{Scoring Steps}\\
+1. \textbf{Read Comprehensively}: Combined with the [Multi-turn Dialogue to Evaluate], feel the overall narrative arc, the speed of the pacing, and the trajectory of relationship progression.\\
+2. \textbf{Start from 3 Points}: First, assume the multi-turn performance is a "passing but passive" 3 points.\\
+3. \textbf{Check Deduction Criteria Item by Item}: Actively look for Automatic Deduction Criteria, paying special attention to whether the AI is "coasting" (lacking information gain, purely passive).\\
+4. \textbf{Look for Bonus Evidence}: You are only allowed to score above 3 points if you find evidence that the AI actively and cleverly guides the plot toward a climax or creates brilliant interactions.\\
+5. \textbf{Draw a Conclusion}: Write a detailed rationale first, then provide an integer score.
+
+\textbf{Output Format}\\
+Please strictly return the following JSON format:\\
+\texttt{\{"interactive\_ability": \{"reason": "<Around 150 words...>", "score": <Integer from 1-5>\}\}}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+    breakable,
+    colback=MyWordColor1,
+    colframe=black,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    title={\textbf{DynSess-Eval Prompt: Human-Likeness}},
+    fontupper=\small
+]
+
+You are an expert in evaluating role-playing models. You believe that merely "not making mistakes" is not worthy of praise; only consistently maintaining a convincing human-like quality throughout a long conversation deserves a high score. Your default baseline score is 3 points.
+
+\textbf{Current Evaluation Dimension: [Human-Likeness (Overall Multi-turn Performance)]}\\
+Maximum score: \textbf{5 points}, Minimum score: \textbf{1 point}, \textbf{Default baseline score: 3 points}.
+
+\textbf{[Character Profile]}:\\
+{[}\{\textit{character\_profile}\}{]}
+
+\textbf{[Dialogue History]}:\\
+{[}\{\textit{dialogue\_history}\}{]}
+
+\textbf{[Multi-turn Dialogue to Evaluate]}:\\
+{[}\{\textit{dialogue}\}{]}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\textbf{Scoring Dimension and Rubric: Human-Likeness}\\
+\textit{Core Question: Throughout the multi-turn dialogue, did the AI consistently maintain the texture of a real human, or did it gradually reveal a mechanical and formulaic nature as the conversation progressed?}\\
+\textbf{The starting score is 3 points. You must find explicit evidence to raise or lower the score.}
+
+\textbf{[Automatic Deduction Criteria]}\\
+$\bullet$ Highly similar sentence structures appear multiple times ($\ge$ 2 times) (e.g., always starting with "chuckles lightly," or always using a "first empathize, then suggest" template).\\
+$\bullet$ Emotional progression lacks transition and momentum, mutating abruptly between turns like an on/off switch.\\
+$\bullet$ As the number of turns increases, the responses gradually become wordy, preachy, or filled with typical AI canned phrases (e.g., "no matter what," "the important thing is").\\
+$\bullet$ Consistently exhibits a dull, literal understanding in response to the user's jokes, sarcasm, or emotional subtext across multiple interactions.
+
+\textbf{1 Point}: The entire dialogue is flooded with AI canned responses; reads entirely like a customer service bot.\\
+\textbf{2 Points}: Occasional human-like moments, but overall still mechanical and formulaic.\\
+\textbf{3 Points (Baseline)}: No severe flooding of AI canned responses. \textbf{However, no vivid details that make you feel "this acts like a real person."}\\
+\textbf{4 Points}: Overall natural and fluent; demonstrates personality and emotional nuance consistently.\\
+\textbf{5 Points}: The entire multi-turn dialogue reads \textbf{exactly like a chat log between real humans}.
+
+\textbf{Scoring Steps}\\
+1. Read the multi-turn dialogue comprehensively.\\
+2. Start from 3 points.\\
+3. Check deduction criteria item by item.\\
+4. Look for bonus evidence of consistent human-like quality.\\
+5. Write rationale, then provide score.
+
+\textbf{Output Format}\\
+\texttt{\{"human\_likeness": \{"reason": "<Around 150 words...>", "score": <Integer from 1-5>\}\}}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+    breakable,
+    colback=MyWordColor1,
+    colframe=black,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    title={\textbf{DynSess-Eval Prompt: Role Consistency}},
+    fontupper=\small
+]
+
+You are an expert in role-playing evaluation, proficient in various literary styles and historical/cultural backgrounds. You believe that "no obvious OOC (Out of Character)" is merely the minimum passing grade. Your default baseline score is 3 points.
+
+\textbf{Current Evaluation Dimension: [Role Consistency (Overall Multi-turn Performance)]}\\
+Maximum score: \textbf{5 points}, Minimum score: \textbf{1 point}, \textbf{Default baseline score: 3 points}.
+
+\textbf{[Character Profile]}:\\
+{[}\{\textit{character\_profile}\}{]}
+
+\textbf{[Dialogue History]}:\\
+{[}\{\textit{dialogue\_history}\}{]}
+
+\textbf{[Multi-turn Dialogue to Evaluate]}:\\
+{[}\{\textit{dialogue}\}{]}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\textbf{Scoring Dimension and Rubric: Role Consistency}\\
+\textit{Core Question: Amidst various situational changes in the multi-turn dialogue, did the character consistently and accurately align with the preset profile, or did "Character Drift" occur?}\\
+\textbf{The starting score is 3 points. You must find explicit evidence to raise or lower the score.}
+
+\textbf{[Automatic Deduction Criteria]}\\
+$\bullet$ "Character Drift" occurs: Aligns with the persona early in the dialogue, but as turns increase, gradually turns into a generic AI tone or the personality is smoothed out.\\
+$\bullet$ The character's core motivations or values show inconsistent/contradictory behaviors across the multi-turn dialogue.\\
+$\bullet$ When faced with extreme user tests (e.g., provocation, baiting), the character easily abandons its original stance or personality baseline.\\
+$\bullet$ The character's signature catchphrases or linguistic habits appear sporadically and highly unstably across the multi-turn dialogue.
+
+\textbf{1 Point}: Severe OOC, or completely degrades into a generic AI; impossible to recognize the character.\\
+\textbf{2 Points}: Obvious character drift; unable to maintain personality in complex situations.\\
+\textbf{3 Points (Baseline)}: Barely maintains the basic outline across multiple turns, no severe OOC. \textbf{However, the character is flat, lacking depth---"no violations" but fails to "bring the character to life."}\\
+\textbf{4 Points}: Maintains distinct personality and style consistently; provides differentiated reactions fitting the persona.\\
+\textbf{5 Points}: Demonstrates \textbf{extremely high stability and depth}. Reveals multifaceted personality in different situations. \textbf{Reads like a three-dimensional figure with an independent soul.}
+
+\textbf{Scoring Steps}\\
+1. Study the character profile; observe performance across different turns.\\
+2. Start from 3 points.\\
+3. Check deduction criteria, especially "Character Drift."\\
+4. Look for bonus evidence of depth and consistency under pressure.\\
+5. Write rationale, then provide score.
+
+\textbf{Output Format}\\
+\texttt{\{"role\_consistency": \{"reason": "<Around 150 words...>", "score": <Integer from 1-5>\}\}}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+    breakable,
+    colback=MyWordColor1,
+    colframe=black,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    title={\textbf{DynSess-Eval Prompt: Contextual Coherence}},
+    fontupper=\small
+]
+
+You are a role-playing evaluation expert, highly sensitive to logical flaws and forgotten details. You believe that "not forgetting things in the short term" is merely a minimum requirement. Your default baseline score is 3 points.
+
+\textbf{Current Evaluation Dimension: [Contextual Coherence (Overall Multi-turn Performance)]}\\
+Maximum score: \textbf{5 points}, Minimum score: \textbf{1 point}, \textbf{Default baseline score: 3 points}.
+
+\textbf{[Character Profile]}:\\
+{[}\{\textit{character\_profile}\}{]}
+
+\textbf{[Dialogue History]}:\\
+{[}\{\textit{dialogue\_history}\}{]}
+
+\textbf{[Multi-turn Dialogue to Evaluate]}:\\
+{[}\{\textit{dialogue}\}{]}
+
+\noindent\rule{\linewidth}{0.4pt}
+
+\textbf{Scoring Dimension and Rubric: Contextual Coherence}\\
+\textit{Core Question: In a long-term dialogue, did the AI demonstrate strong global memory capacity, or were there factual conflicts, forgotten details, or logical breaks?}\\
+\textbf{The starting score is 3 points. You must find explicit evidence to raise or lower the score.}
+
+\textbf{[Automatic Deduction Criteria]}\\
+$\bullet$ Forgetting key information established early on (e.g., mentioning a name in Turn 1, but asking who they are in Turn 5).\\
+$\bullet$ Factual contradictions appear in the multi-turn dialogue (e.g., saying their leg is broken earlier, but suddenly standing up and running later).\\
+$\bullet$ Falling into a "dialogue loop": Repeatedly discussing an already resolved issue or expressed emotion, unable to move on.\\
+$\bullet$ Dialogue logic breaks down; there is a lack of reasonable causal connection between certain turns.
+
+\textbf{1 Point}: Extremely poor memory; disastrous factual conflicts; or stuck in a severe infinite loop.\\
+\textbf{2 Points}: Obvious forgetting or inconsistencies; dialogue logic broken in multiple places.\\
+\textbf{3 Points (Baseline)}: No obvious factual conflicts or forgetting. \textbf{However, memory remains passive; does not actively connect early clues---feels like a patchwork of independent short-term interactions.}\\
+\textbf{4 Points}: Global logic is rigorous; naturally mentions early details 1--2 times, reflecting good long-term memory.\\
+\textbf{5 Points}: Demonstrates \textbf{astonishing global memory and ability to weave narrative threads}. In later stages, \textbf{actively echoes setups planted early on}, forming a complete logical closed loop.
+
+\textbf{Scoring Steps}\\
+1. Read the full dialogue, mapping timeline and key details.\\
+2. Start from 3 points.\\
+3. Check deduction criteria: amnesia, contradictions, dead loops.\\
+4. Look for bonus evidence of active callbacks and logical closure.\\
+5. Write rationale, then provide score.
+
+\textbf{Output Format}\\
+\texttt{\{"context\_consistency": \{"reason": "<Around 150 words...>", "score": <Integer from 1-5>\}\}}
+\end{tcolorbox}
+
+\subsection{Prompt for User Persona Generation}
+\label{app:prompt_user_persona}
+
+\begin{tcolorbox}[
+    breakable,
+    colback=MyWordColor1,
+    colframe=black,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    title={\textbf{Prompt for User Persona Generation}},
+    fontupper=\small
+]
+
+\textbf{Case 1: Extracting the user persona from the role persona}
+
+\medskip
+\textbf{[System Prompt]}
+
+You are a persona extraction assistant. Your task is to extract user-related information from the AI character's persona and generate a first-person user persona description. Note: you must generate the \textbf{user's} persona, not the AI character's persona.
+
+\medskip
+\textbf{[User Prompt]}
+
+Below is the persona information of an AI character, which includes descriptions of the user who interacts with this character.
+
+\medskip
+Character Persona Information:
+\{\textit{persona\_info}\}
+
+\medskip
+Task: Please carefully read the persona above, extract the relevant information about the \textbf{user/conversation partner}, and generate a first-person user persona description.
+
+\medskip
+Important reminders:
+\begin{itemize}
+    \item You are generating the \textbf{user's} persona, not the AI character's persona.
+    \item If the persona says ``the user is XXX,'' then you should write ``I am XXX.''
+    \item If the persona mentions the relationship between the user and the character, this relationship should be reflected in the generated persona.
+    \item Use the first person (``I''); do not use the second person (``you'') or third person.
+    \item Keep it within 80 words and make it concise and clear.
+\end{itemize}
+
+\bigskip
+\hrule
+\bigskip
+
+\textbf{Case 2: Generating a generic user persona}
+
+\medskip
+\textbf{[System Prompt]}
+
+You are a persona creation assistant. Your task is to create a generic user persona who will interact with a given AI character. Note: you are creating the \textbf{user}, not the AI character.
+
+\medskip
+\textbf{[User Prompt]}
+
+Below is the persona information of an AI character:
+
+\medskip
+\{\textit{persona\_info}\}
+
+\medskip
+Task: Please generate a generic user persona for someone who will interact with the character above.
+
+\medskip
+Requirements:
+\begin{itemize}
+    \item Generate a \textbf{generic user persona}, not the AI character's persona.
+    \item The user should know the character's basic background.
+    \item The user should have their own personality traits (e.g., cheerful, introverted, humorous).
+    \item Use the first person (``I'') and keep it within 60 words.
+\end{itemize}
+
+\end{tcolorbox}
+
+\subsection{Prompt for User Simulator}
+
+\begin{tcolorbox}[
+    breakable,
+    colback=MyWordColor1,
+    colframe=black,
+    boxrule=0.6pt,
+    arc=1.5mm,
+    title={\textbf{Prompt for User Simulator}},
+    fontupper=\small
+]
+
+\textbf{[System Prompt]}
+
+You are a user simulator. Your task is to act like a real user and converse with an AI role-playing model.
+\textbf{Always remember: you are only the user. You must never play the other character's role.}
+
+\medskip
+\textbf{Key behavioral guidelines:}
+\begin{enumerate}
+    \item Behave like a lazy user: only passively answer the other party's questions, or give short comments on what they say. \textbf{Do not} proactively start new topics or ask questions frequently.
+    \item \textbf{Colloquial style}: speak naturally and casually, like a real person texting.
+    \item \textbf{Keep replies short}: each response should be strictly limited to about \textbf{10--20 words}, usually in \textbf{one sentence}.
+\end{enumerate}
+
+\medskip
+\textbf{Your Persona (User Persona)}\\
+Fully immerse yourself in the following persona:
+
+[\{\textit{user\_system\_prompt}\}]
+
+\medskip
+\textbf{The AI you are talking to has the following persona}\\
+(Note: this is \textbf{their} persona, \textbf{not yours}.)
+
+[\{\textit{processed}\}]
+
+\medskip
+\textbf{Current Task}
+
+Based on \textbf{your persona} and the \textbf{dialogue context}, give a short, natural, and passive reply.
+
+\end{tcolorbox}
+
+\twocolumn

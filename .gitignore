@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Secrets / local config
+.env
+*.env.local
+
+# Pipeline run artifacts (generated at runtime; large)
+evaluate/
+outputs/
+results/eval_summary.json.bak
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

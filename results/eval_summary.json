@@ -1,0 +1,1161 @@
+{
+  "runs": [
+    {
+      "run": "persona_general_20260426_083132",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 09:10:48",
+      "total": 100,
+      "overall_mean": 3.805,
+      "dimensions": {
+        "human_likeness": 3.3,
+        "role_consistency": 4.51,
+        "context_consistency": 3.63,
+        "interactive_ability": 3.78
+      }
+    },
+    {
+      "run": "persona_general_20260426_093448",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 09:48:43",
+      "total": 100,
+      "overall_mean": 4.0175,
+      "dimensions": {
+        "human_likeness": 3.9,
+        "role_consistency": 4.78,
+        "context_consistency": 3.86,
+        "interactive_ability": 3.53
+      }
+    },
+    {
+      "run": "persona_general_20260426_101130",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 10:25:20",
+      "total": 100,
+      "overall_mean": 3.9575,
+      "dimensions": {
+        "human_likeness": 3.89,
+        "role_consistency": 4.62,
+        "context_consistency": 3.81,
+        "interactive_ability": 3.51
+      }
+    },
+    {
+      "run": "persona_general_20260426_104138",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 10:55:07",
+      "total": 100,
+      "overall_mean": 3.8875,
+      "dimensions": {
+        "human_likeness": 3.8,
+        "role_consistency": 4.57,
+        "context_consistency": 3.69,
+        "interactive_ability": 3.49
+      }
+    },
+    {
+      "run": "persona_general_20260426_122441",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 12:38:18",
+      "total": 100,
+      "overall_mean": 4.0275,
+      "dimensions": {
+        "human_likeness": 3.95,
+        "role_consistency": 4.79,
+        "context_consistency": 3.76,
+        "interactive_ability": 3.61
+      }
+    },
+    {
+      "run": "persona_general_20260426_123928",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 12:53:01",
+      "total": 100,
+      "overall_mean": 4.0875,
+      "dimensions": {
+        "human_likeness": 4.01,
+        "role_consistency": 4.72,
+        "context_consistency": 3.96,
+        "interactive_ability": 3.66
+      }
+    },
+    {
+      "run": "persona_general_20260426_125737",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 13:10:41",
+      "total": 100,
+      "overall_mean": 3.9375,
+      "dimensions": {
+        "human_likeness": 3.91,
+        "role_consistency": 4.59,
+        "context_consistency": 3.82,
+        "interactive_ability": 3.43
+      }
+    },
+    {
+      "run": "persona_general_20260426_134203",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 13:55:52",
+      "total": 100,
+      "overall_mean": 4.11,
+      "dimensions": {
+        "human_likeness": 4.06,
+        "role_consistency": 4.68,
+        "context_consistency": 4.04,
+        "interactive_ability": 3.66
+      }
+    },
+    {
+      "run": "persona_general_20260426_140504",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-26 14:18:12",
+      "total": 100,
+      "overall_mean": 4.1,
+      "dimensions": {
+        "human_likeness": 4.07,
+        "role_consistency": 4.81,
+        "context_consistency": 3.89,
+        "interactive_ability": 3.63
+      }
+    },
+    {
+      "run": "persona_general_20260427_112612",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-27 11:40:45",
+      "total": 100,
+      "overall_mean": 4.2675,
+      "dimensions": {
+        "human_likeness": 4.31,
+        "role_consistency": 4.86,
+        "context_consistency": 4.07,
+        "interactive_ability": 3.83
+      }
+    },
+    {
+      "run": "persona_general_20260427_113731",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-27 11:52:04",
+      "total": 100,
+      "overall_mean": 4.2075,
+      "dimensions": {
+        "human_likeness": 4.18,
+        "role_consistency": 4.78,
+        "context_consistency": 4.09,
+        "interactive_ability": 3.78
+      }
+    },
+    {
+      "run": "persona_general_20260427_120147",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-27 12:16:17",
+      "total": 100,
+      "overall_mean": 4.245,
+      "dimensions": {
+        "human_likeness": 4.23,
+        "role_consistency": 4.82,
+        "context_consistency": 4.03,
+        "interactive_ability": 3.9
+      }
+    },
+    {
+      "run": "persona_general_20260427_120805",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-27 12:22:24",
+      "total": 100,
+      "overall_mean": 4.2675,
+      "dimensions": {
+        "human_likeness": 4.23,
+        "role_consistency": 4.83,
+        "context_consistency": 4.07,
+        "interactive_ability": 3.94
+      }
+    },
+    {
+      "run": "persona_general_20260427_122342",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-27 12:37:57",
+      "total": 100,
+      "overall_mean": 4.09,
+      "dimensions": {
+        "human_likeness": 4.16,
+        "role_consistency": 4.72,
+        "context_consistency": 3.85,
+        "interactive_ability": 3.63
+      }
+    },
+    {
+      "run": "persona_general_20260427_122857",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-27 12:42:50",
+      "total": 100,
+      "overall_mean": 4.145,
+      "dimensions": {
+        "human_likeness": 4.08,
+        "role_consistency": 4.81,
+        "context_consistency": 4.03,
+        "interactive_ability": 3.66
+      }
+    },
+    {
+      "run": "persona_general_20260428_025919",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-28 03:17:07",
+      "total": 100,
+      "overall_mean": 4.3175,
+      "dimensions": {
+        "human_likeness": 4.42,
+        "role_consistency": 4.9,
+        "context_consistency": 4.06,
+        "interactive_ability": 3.89
+      }
+    },
+    {
+      "run": "persona_general_20260428_031400",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-28 03:28:32",
+      "total": 100,
+      "overall_mean": 4.2675,
+      "dimensions": {
+        "human_likeness": 4.32,
+        "role_consistency": 4.87,
+        "context_consistency": 4.05,
+        "interactive_ability": 3.83
+      }
+    },
+    {
+      "run": "persona_general_20260428_061359",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-28 06:38:44",
+      "total": 100,
+      "overall_mean": 4.34,
+      "dimensions": {
+        "human_likeness": 4.42,
+        "role_consistency": 4.92,
+        "context_consistency": 4.12,
+        "interactive_ability": 3.9
+      }
+    },
+    {
+      "run": "persona_general_20260428_131520",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-28 13:36:10",
+      "total": 100,
+      "overall_mean": 4.2875,
+      "dimensions": {
+        "human_likeness": 4.39,
+        "role_consistency": 4.88,
+        "context_consistency": 4.1,
+        "interactive_ability": 3.78
+      }
+    },
+    {
+      "run": "persona_general_20260428_133854",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-28 14:00:54",
+      "total": 100,
+      "overall_mean": 4.31,
+      "dimensions": {
+        "human_likeness": 4.29,
+        "role_consistency": 4.8,
+        "context_consistency": 4.18,
+        "interactive_ability": 3.97
+      }
+    },
+    {
+      "run": "persona_general_20260429_064132",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-29 06:59:49",
+      "total": 100,
+      "overall_mean": 4.2425,
+      "dimensions": {
+        "human_likeness": 4.28,
+        "role_consistency": 4.81,
+        "context_consistency": 4.09,
+        "interactive_ability": 3.79
+      }
+    },
+    {
+      "run": "persona_general_20260429_114240",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-29 12:00:21",
+      "total": 100,
+      "overall_mean": 3.9975,
+      "dimensions": {
+        "human_likeness": 3.92,
+        "role_consistency": 4.74,
+        "context_consistency": 3.8,
+        "interactive_ability": 3.53
+      }
+    },
+    {
+      "run": "persona_general_20260429_114850",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-29 12:05:59",
+      "total": 100,
+      "overall_mean": 4.0925,
+      "dimensions": {
+        "human_likeness": 4.1,
+        "role_consistency": 4.72,
+        "context_consistency": 3.86,
+        "interactive_ability": 3.69
+      }
+    },
+    {
+      "run": "persona_general_20260429_120739",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-29 12:25:46",
+      "total": 100,
+      "overall_mean": 4.03,
+      "dimensions": {
+        "human_likeness": 3.81,
+        "role_consistency": 4.72,
+        "context_consistency": 3.93,
+        "interactive_ability": 3.66
+      }
+    },
+    {
+      "run": "persona_general_20260429_130204",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-29 13:19:54",
+      "total": 100,
+      "overall_mean": 4.0925,
+      "dimensions": {
+        "human_likeness": 4.01,
+        "role_consistency": 4.76,
+        "context_consistency": 3.89,
+        "interactive_ability": 3.71
+      }
+    },
+    {
+      "run": "persona_general_20260430_024325",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-30 03:01:04",
+      "total": 100,
+      "overall_mean": 4.1375,
+      "dimensions": {
+        "human_likeness": 4.11,
+        "role_consistency": 4.77,
+        "context_consistency": 3.93,
+        "interactive_ability": 3.74
+      }
+    },
+    {
+      "run": "persona_general_20260430_025822",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-30 03:15:50",
+      "total": 100,
+      "overall_mean": 4.0325,
+      "dimensions": {
+        "human_likeness": 3.92,
+        "role_consistency": 4.72,
+        "context_consistency": 3.96,
+        "interactive_ability": 3.53
+      }
+    },
+    {
+      "run": "persona_general_20260430_032136",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-30 03:40:08",
+      "total": 100,
+      "overall_mean": 4.1,
+      "dimensions": {
+        "human_likeness": 3.99,
+        "role_consistency": 4.73,
+        "context_consistency": 4.02,
+        "interactive_ability": 3.66
+      }
+    },
+    {
+      "run": "persona_general_20260430_034645",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-30 04:02:56",
+      "total": 100,
+      "overall_mean": 3.91,
+      "dimensions": {
+        "human_likeness": 3.75,
+        "role_consistency": 4.67,
+        "context_consistency": 3.66,
+        "interactive_ability": 3.56
+      }
+    },
+    {
+      "run": "persona_general_20260430_040626",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-04-30 04:20:45",
+      "total": 100,
+      "overall_mean": 3.9875,
+      "dimensions": {
+        "human_likeness": 3.86,
+        "role_consistency": 4.65,
+        "context_consistency": 3.86,
+        "interactive_ability": 3.58
+      }
+    },
+    {
+      "run": "persona_general_20260505_062613",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 06:40:07",
+      "total": 100,
+      "overall_mean": 3.9625,
+      "dimensions": {
+        "human_likeness": 3.88,
+        "role_consistency": 4.66,
+        "context_consistency": 3.76,
+        "interactive_ability": 3.55
+      }
+    },
+    {
+      "run": "persona_general_20260505_063147",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 06:45:18",
+      "total": 100,
+      "overall_mean": 4.0075,
+      "dimensions": {
+        "human_likeness": 3.96,
+        "role_consistency": 4.73,
+        "context_consistency": 3.74,
+        "interactive_ability": 3.6
+      }
+    },
+    {
+      "run": "persona_general_20260505_101115",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 10:25:40",
+      "total": 100,
+      "overall_mean": 4.12,
+      "dimensions": {
+        "human_likeness": 4.11,
+        "role_consistency": 4.77,
+        "context_consistency": 3.88,
+        "interactive_ability": 3.72
+      }
+    },
+    {
+      "run": "persona_general_20260505_103909",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 10:53:00",
+      "total": 100,
+      "overall_mean": 4.0825,
+      "dimensions": {
+        "human_likeness": 4.08,
+        "role_consistency": 4.73,
+        "context_consistency": 4.01,
+        "interactive_ability": 3.51
+      }
+    },
+    {
+      "run": "persona_general_20260505_150034",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 15:14:27",
+      "total": 100,
+      "overall_mean": 3.9375,
+      "dimensions": {
+        "human_likeness": 3.92,
+        "role_consistency": 4.66,
+        "context_consistency": 3.74,
+        "interactive_ability": 3.43
+      }
+    },
+    {
+      "run": "persona_general_20260505_150615",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 15:21:32",
+      "total": 100,
+      "overall_mean": 3.9775,
+      "dimensions": {
+        "human_likeness": 3.92,
+        "role_consistency": 4.74,
+        "context_consistency": 3.73,
+        "interactive_ability": 3.52
+      }
+    },
+    {
+      "run": "persona_general_20260505_153029",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 15:46:13",
+      "total": 100,
+      "overall_mean": 4.1125,
+      "dimensions": {
+        "human_likeness": 4.03,
+        "role_consistency": 4.83,
+        "context_consistency": 3.91,
+        "interactive_ability": 3.68
+      }
+    },
+    {
+      "run": "persona_general_20260505_153545",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-05 15:49:33",
+      "total": 100,
+      "overall_mean": 4.05,
+      "dimensions": {
+        "human_likeness": 4.06,
+        "role_consistency": 4.7,
+        "context_consistency": 3.95,
+        "interactive_ability": 3.49
+      }
+    },
+    {
+      "run": "persona_general_20260506_031205",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 03:26:46",
+      "total": 100,
+      "overall_mean": 4.55,
+      "dimensions": {
+        "human_likeness": 4.55,
+        "role_consistency": 4.93,
+        "context_consistency": 4.49,
+        "interactive_ability": 4.23
+      }
+    },
+    {
+      "run": "persona_general_20260506_031825",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 03:32:36",
+      "total": 100,
+      "overall_mean": 4.3725,
+      "dimensions": {
+        "human_likeness": 4.41,
+        "role_consistency": 4.85,
+        "context_consistency": 4.26,
+        "interactive_ability": 3.97
+      }
+    },
+    {
+      "run": "persona_general_20260506_032754",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 03:41:44",
+      "total": 100,
+      "overall_mean": 4.45,
+      "dimensions": {
+        "human_likeness": 4.54,
+        "role_consistency": 4.84,
+        "context_consistency": 4.18,
+        "interactive_ability": 4.24
+      }
+    },
+    {
+      "run": "persona_general_20260506_033710",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 03:50:32",
+      "total": 100,
+      "overall_mean": 3.965,
+      "dimensions": {
+        "human_likeness": 3.86,
+        "role_consistency": 4.72,
+        "context_consistency": 3.82,
+        "interactive_ability": 3.46
+      }
+    },
+    {
+      "run": "persona_general_20260506_034437",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 03:58:18",
+      "total": 100,
+      "overall_mean": 3.985,
+      "dimensions": {
+        "human_likeness": 3.83,
+        "role_consistency": 4.63,
+        "context_consistency": 3.93,
+        "interactive_ability": 3.55
+      }
+    },
+    {
+      "run": "persona_general_20260506_035349",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 04:07:34",
+      "total": 100,
+      "overall_mean": 3.95,
+      "dimensions": {
+        "human_likeness": 3.85,
+        "role_consistency": 4.64,
+        "context_consistency": 3.87,
+        "interactive_ability": 3.44
+      }
+    },
+    {
+      "run": "persona_general_20260506_040900",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 04:22:19",
+      "total": 100,
+      "overall_mean": 4.19,
+      "dimensions": {
+        "human_likeness": 4.03,
+        "role_consistency": 4.79,
+        "context_consistency": 4.18,
+        "interactive_ability": 3.76
+      }
+    },
+    {
+      "run": "persona_general_20260506_041452",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 04:29:21",
+      "total": 100,
+      "overall_mean": 4.0075,
+      "dimensions": {
+        "human_likeness": 3.88,
+        "role_consistency": 4.76,
+        "context_consistency": 3.82,
+        "interactive_ability": 3.57
+      }
+    },
+    {
+      "run": "persona_general_20260506_042316",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 04:37:03",
+      "total": 100,
+      "overall_mean": 4.1825,
+      "dimensions": {
+        "human_likeness": 4.18,
+        "role_consistency": 4.79,
+        "context_consistency": 4.04,
+        "interactive_ability": 3.72
+      }
+    },
+    {
+      "run": "persona_general_20260506_050747",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 05:20:45",
+      "total": 100,
+      "overall_mean": 4.1375,
+      "dimensions": {
+        "human_likeness": 3.99,
+        "role_consistency": 4.81,
+        "context_consistency": 4.06,
+        "interactive_ability": 3.69
+      }
+    },
+    {
+      "run": "persona_general_20260506_052538",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 05:39:51",
+      "total": 100,
+      "overall_mean": 4.15,
+      "dimensions": {
+        "human_likeness": 4.09,
+        "role_consistency": 4.71,
+        "context_consistency": 4.02,
+        "interactive_ability": 3.78
+      }
+    },
+    {
+      "run": "persona_general_20260506_053039",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 05:44:46",
+      "total": 100,
+      "overall_mean": 4.4325,
+      "dimensions": {
+        "human_likeness": 4.4,
+        "role_consistency": 4.88,
+        "context_consistency": 4.35,
+        "interactive_ability": 4.1
+      }
+    },
+    {
+      "run": "persona_general_20260506_060408",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 06:18:14",
+      "total": 100,
+      "overall_mean": 4.2,
+      "dimensions": {
+        "human_likeness": 4.11,
+        "role_consistency": 4.8,
+        "context_consistency": 4.12,
+        "interactive_ability": 3.77
+      }
+    },
+    {
+      "run": "persona_general_20260506_061044",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 06:24:13",
+      "total": 100,
+      "overall_mean": 4.1525,
+      "dimensions": {
+        "human_likeness": 4.12,
+        "role_consistency": 4.8,
+        "context_consistency": 3.94,
+        "interactive_ability": 3.75
+      }
+    },
+    {
+      "run": "persona_general_20260506_061955",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 06:33:42",
+      "total": 100,
+      "overall_mean": 4.16,
+      "dimensions": {
+        "human_likeness": 4.16,
+        "role_consistency": 4.81,
+        "context_consistency": 3.98,
+        "interactive_ability": 3.69
+      }
+    },
+    {
+      "run": "persona_general_20260506_070536",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 07:19:26",
+      "total": 100,
+      "overall_mean": 4.2725,
+      "dimensions": {
+        "human_likeness": 4.28,
+        "role_consistency": 4.87,
+        "context_consistency": 4.04,
+        "interactive_ability": 3.9
+      }
+    },
+    {
+      "run": "persona_general_20260506_083216",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 08:46:34",
+      "total": 100,
+      "overall_mean": 4.2725,
+      "dimensions": {
+        "human_likeness": 4.22,
+        "role_consistency": 4.87,
+        "context_consistency": 4.08,
+        "interactive_ability": 3.92
+      }
+    },
+    {
+      "run": "persona_general_20260506_083827",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 08:52:47",
+      "total": 100,
+      "overall_mean": 4.2475,
+      "dimensions": {
+        "human_likeness": 4.35,
+        "role_consistency": 4.82,
+        "context_consistency": 4.07,
+        "interactive_ability": 3.75
+      }
+    },
+    {
+      "run": "persona_general_20260506_084713",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 09:01:25",
+      "total": 100,
+      "overall_mean": 4.3225,
+      "dimensions": {
+        "human_likeness": 4.39,
+        "role_consistency": 4.81,
+        "context_consistency": 4.13,
+        "interactive_ability": 3.96
+      }
+    },
+    {
+      "run": "persona_general_20260506_130935",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 13:27:03",
+      "total": 100,
+      "overall_mean": 4.26,
+      "dimensions": {
+        "human_likeness": 4.28,
+        "role_consistency": 4.81,
+        "context_consistency": 4.06,
+        "interactive_ability": 3.89
+      }
+    },
+    {
+      "run": "persona_general_20260506_131651",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 13:33:45",
+      "total": 100,
+      "overall_mean": 4.2725,
+      "dimensions": {
+        "human_likeness": 4.25,
+        "role_consistency": 4.83,
+        "context_consistency": 4.16,
+        "interactive_ability": 3.85
+      }
+    },
+    {
+      "run": "persona_general_20260506_132816",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-06 13:45:09",
+      "total": 100,
+      "overall_mean": 4.3225,
+      "dimensions": {
+        "human_likeness": 4.31,
+        "role_consistency": 4.87,
+        "context_consistency": 4.22,
+        "interactive_ability": 3.89
+      }
+    },
+    {
+      "run": "persona_general_20260507_030243",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-07 03:20:00",
+      "total": 100,
+      "overall_mean": 4.505,
+      "dimensions": {
+        "human_likeness": 4.43,
+        "role_consistency": 4.97,
+        "context_consistency": 4.44,
+        "interactive_ability": 4.18
+      }
+    },
+    {
+      "run": "persona_general_20260507_032323",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-07 03:40:25",
+      "total": 100,
+      "overall_mean": 4.4975,
+      "dimensions": {
+        "human_likeness": 4.43,
+        "role_consistency": 4.96,
+        "context_consistency": 4.3,
+        "interactive_ability": 4.3
+      }
+    },
+    {
+      "run": "persona_general_20260507_060820",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-07 06:24:49",
+      "total": 100,
+      "overall_mean": 4.3775,
+      "dimensions": {
+        "human_likeness": 4.37,
+        "role_consistency": 4.86,
+        "context_consistency": 4.19,
+        "interactive_ability": 4.09
+      }
+    },
+    {
+      "run": "persona_general_20260507_115104",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-07 12:08:18",
+      "total": 100,
+      "overall_mean": 4.5,
+      "dimensions": {
+        "human_likeness": 4.56,
+        "role_consistency": 4.88,
+        "context_consistency": 4.28,
+        "interactive_ability": 4.28
+      }
+    },
+    {
+      "run": "persona_general_20260507_115934",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-07 12:16:32",
+      "total": 100,
+      "overall_mean": 4.495,
+      "dimensions": {
+        "human_likeness": 4.53,
+        "role_consistency": 4.92,
+        "context_consistency": 4.34,
+        "interactive_ability": 4.19
+      }
+    },
+    {
+      "run": "persona_general_20260507_121441",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-07 12:31:18",
+      "total": 100,
+      "overall_mean": 4.45,
+      "dimensions": {
+        "human_likeness": 4.48,
+        "role_consistency": 4.85,
+        "context_consistency": 4.3,
+        "interactive_ability": 4.17
+      }
+    },
+    {
+      "run": "persona_general_20260508_031804",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-08 03:37:53",
+      "total": 100,
+      "overall_mean": 4.555,
+      "dimensions": {
+        "human_likeness": 4.49,
+        "role_consistency": 4.86,
+        "context_consistency": 4.39,
+        "interactive_ability": 4.48
+      }
+    },
+    {
+      "run": "persona_general_20260508_041220",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-08 04:29:15",
+      "total": 100,
+      "overall_mean": 4.11,
+      "dimensions": {
+        "human_likeness": 4.02,
+        "role_consistency": 4.71,
+        "context_consistency": 3.98,
+        "interactive_ability": 3.73
+      }
+    },
+    {
+      "run": "persona_general_20260508_042939",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-08 04:48:53",
+      "total": 100,
+      "overall_mean": 4.31,
+      "dimensions": {
+        "human_likeness": 4.36,
+        "role_consistency": 4.89,
+        "context_consistency": 4.16,
+        "interactive_ability": 3.83
+      }
+    },
+    {
+      "run": "persona_general_20260508_042948",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-08 04:48:34",
+      "total": 100,
+      "overall_mean": 4.26,
+      "dimensions": {
+        "human_likeness": 4.24,
+        "role_consistency": 4.88,
+        "context_consistency": 4.05,
+        "interactive_ability": 3.87
+      }
+    },
+    {
+      "run": "persona_general_20260509_060759",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-09 06:24:13",
+      "total": 100,
+      "overall_mean": 4.2125,
+      "dimensions": {
+        "human_likeness": 4.3,
+        "role_consistency": 4.8,
+        "context_consistency": 4.05,
+        "interactive_ability": 3.7
+      }
+    },
+    {
+      "run": "persona_general_20260509_112441",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-09 11:39:43",
+      "total": 100,
+      "overall_mean": 4.3725,
+      "dimensions": {
+        "human_likeness": 4.55,
+        "role_consistency": 4.87,
+        "context_consistency": 4.1,
+        "interactive_ability": 3.97
+      }
+    },
+    {
+      "run": "persona_general_20260509_113645",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-09 11:52:23",
+      "total": 100,
+      "overall_mean": 4.41,
+      "dimensions": {
+        "human_likeness": 4.53,
+        "role_consistency": 4.88,
+        "context_consistency": 4.27,
+        "interactive_ability": 3.96
+      }
+    },
+    {
+      "run": "persona_general_20260509_114130",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-09 11:58:22",
+      "total": 100,
+      "overall_mean": 4.425,
+      "dimensions": {
+        "human_likeness": 4.5,
+        "role_consistency": 4.93,
+        "context_consistency": 4.23,
+        "interactive_ability": 4.04
+      }
+    },
+    {
+      "run": "persona_general_20260511_050729",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-11 05:22:51",
+      "total": 100,
+      "overall_mean": 4.3375,
+      "dimensions": {
+        "human_likeness": 4.33,
+        "role_consistency": 4.9,
+        "context_consistency": 4.13,
+        "interactive_ability": 3.99
+      }
+    },
+    {
+      "run": "persona_general_20260511_051455",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-11 05:30:20",
+      "total": 100,
+      "overall_mean": 4.3275,
+      "dimensions": {
+        "human_likeness": 4.48,
+        "role_consistency": 4.79,
+        "context_consistency": 4.17,
+        "interactive_ability": 3.87
+      }
+    },
+    {
+      "run": "persona_general_20260511_052714",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-11 05:42:11",
+      "total": 100,
+      "overall_mean": 4.3,
+      "dimensions": {
+        "human_likeness": 4.24,
+        "role_consistency": 4.84,
+        "context_consistency": 4.17,
+        "interactive_ability": 3.95
+      }
+    },
+    {
+      "run": "persona_general_20260520_082817",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 08:42:51",
+      "total": 100,
+      "overall_mean": 3.8975,
+      "dimensions": {
+        "human_likeness": 3.84,
+        "role_consistency": 4.43,
+        "context_consistency": 3.66,
+        "interactive_ability": 3.66
+      }
+    },
+    {
+      "run": "persona_general_20260520_083430",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 08:48:58",
+      "total": 100,
+      "overall_mean": 4.005,
+      "dimensions": {
+        "human_likeness": 3.9,
+        "role_consistency": 4.75,
+        "context_consistency": 3.76,
+        "interactive_ability": 3.61
+      }
+    },
+    {
+      "run": "persona_general_20260520_085203",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 09:05:47",
+      "total": 100,
+      "overall_mean": 3.885,
+      "dimensions": {
+        "human_likeness": 3.92,
+        "role_consistency": 4.56,
+        "context_consistency": 3.68,
+        "interactive_ability": 3.38
+      }
+    },
+    {
+      "run": "persona_general_20260520_092406",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 09:38:05",
+      "total": 100,
+      "overall_mean": 4.0175,
+      "dimensions": {
+        "human_likeness": 3.95,
+        "role_consistency": 4.73,
+        "context_consistency": 3.81,
+        "interactive_ability": 3.58
+      }
+    },
+    {
+      "run": "persona_general_20260520_092827",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 09:41:58",
+      "total": 100,
+      "overall_mean": 4.0175,
+      "dimensions": {
+        "human_likeness": 4.04,
+        "role_consistency": 4.72,
+        "context_consistency": 3.77,
+        "interactive_ability": 3.54
+      }
+    },
+    {
+      "run": "persona_general_20260520_093903",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 09:52:36",
+      "total": 100,
+      "overall_mean": 3.9775,
+      "dimensions": {
+        "human_likeness": 3.99,
+        "role_consistency": 4.63,
+        "context_consistency": 3.82,
+        "interactive_ability": 3.47
+      }
+    },
+    {
+      "run": "persona_general_20260520_143555",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 14:49:49",
+      "total": 100,
+      "overall_mean": 4.165,
+      "dimensions": {
+        "human_likeness": 4.22,
+        "role_consistency": 4.72,
+        "context_consistency": 3.91,
+        "interactive_ability": 3.81
+      }
+    },
+    {
+      "run": "persona_general_20260520_144057",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 14:55:15",
+      "total": 100,
+      "overall_mean": 4.1975,
+      "dimensions": {
+        "human_likeness": 4.28,
+        "role_consistency": 4.77,
+        "context_consistency": 4.0,
+        "interactive_ability": 3.74
+      }
+    },
+    {
+      "run": "persona_general_20260520_145459",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-20 15:09:34",
+      "total": 100,
+      "overall_mean": 4.1725,
+      "dimensions": {
+        "human_likeness": 4.16,
+        "role_consistency": 4.79,
+        "context_consistency": 3.96,
+        "interactive_ability": 3.78
+      }
+    },
+    {
+      "run": "persona_general_20260522_042452",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-22 04:37:26",
+      "total": 100,
+      "overall_mean": 4.2975,
+      "dimensions": {
+        "human_likeness": 4.33,
+        "role_consistency": 4.78,
+        "context_consistency": 3.96,
+        "interactive_ability": 4.12
+      }
+    },
+    {
+      "run": "persona_general_20260522_042553",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-22 04:38:16",
+      "total": 100,
+      "overall_mean": 4.2925,
+      "dimensions": {
+        "human_likeness": 4.25,
+        "role_consistency": 4.8,
+        "context_consistency": 4.08,
+        "interactive_ability": 4.04
+      }
+    },
+    {
+      "run": "persona_general_20260522_045303",
+      "eval_model": "gemini-3-flash-preview",
+      "eval_time": "2026-05-22 05:05:01",
+      "total": 100,
+      "overall_mean": 4.37,
+      "dimensions": {
+        "human_likeness": 4.53,
+        "role_consistency": 4.81,
+        "context_consistency": 4.1,
+        "interactive_ability": 4.04
+      }
+    }
+  ]
+}
