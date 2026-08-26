@@ -56,11 +56,10 @@
 ## 📕 Code Path
 
 #### Code Structures
-There are four parts in the code.
+There are three parts in the code.
 - **`run_dynsess_eval.py`**: the 3-stage eval pipeline (generate → format → rubric-anchored judge).
 - **`dynsess_rubrics.py`**: the four multi-turn judge rubrics (Interactive Ability / Human-likeness / Role Consistency / Contextual Coherence, 1–5, anchored at 3).
 - **`training/`**: SFT/DPO → multi-turn session-level training-data construction (`convert_dpo_to_session_merge.py` is the canonical prefix-chain merge).
-- **`rebuttal/`**: supplementary experiments (user-simulator variants, long-context robustness, rollout-budget ablation). Run each subdirectory from its own folder.
 
 <details>
 <summary><b>Full tree</b></summary>
@@ -78,9 +77,7 @@ DynSess/
 │   ├── test_dialogue_0424.jsonl              # 100 seed sessions
 │   └── train_samples/                        # 2-line samples of each training format
 ├── results/                       # aggregate eval stats + example result
-├── rebuttal/                      # supplementary experiments
 ├── assets/figures/                # figures rendered from the paper
-├── paper/                         # EMNLP camera-ready LaTeX source (reference)
 ├── requirements.txt
 ├── .env.example
 ├── LICENSE
@@ -145,4 +142,4 @@ Please consider citing this paper if you use the ```code``` or ```data``` from o
 Released under the [MIT License](./LICENSE).
 
 ## 🙏 Acknowledgements
-The default judge and several rebuttal experiments were developed against an internal NetEase Fuxi LLM gateway; the user simulator defaults to Volcengine Doubao-1.5-pro-32k-character.
+The default judge was developed against an internal NetEase Fuxi LLM gateway; the user simulator defaults to Volcengine Doubao-1.5-pro-32k-character.
