@@ -57,8 +57,8 @@
 
 #### Code Structures
 There are three parts in the code.
-- **`run_dynsess_eval.py`**: the 3-stage eval pipeline (generate → format → rubric-anchored judge).
-- **`dynsess_rubrics.py`**: the four multi-turn judge rubrics (Interactive Ability / Human-likeness / Role Consistency / Contextual Coherence, 1–5, anchored at 3).
+- **`eval/run_dynsess_eval.py`**: the 3-stage eval pipeline (generate → format → rubric-anchored judge). One-click entry: **`bash run_eval.sh`** at the repo root.
+- **`prompt/dynsess_rubrics.py`**: the four multi-turn judge rubrics (Interactive Ability / Human-likeness / Role Consistency / Contextual Coherence, 1–5, anchored at 3).
 - **`training/`**: SFT/DPO → multi-turn session-level training-data construction (`convert_dpo_to_session_merge.py` is the canonical prefix-chain merge).
 
 <details>
@@ -66,8 +66,11 @@ There are three parts in the code.
 
 ```
 DynSess/
-├── run_dynsess_eval.py            # 3-stage eval pipeline
-├── dynsess_rubrics.py             # the four multi-turn judge rubrics
+├── run_eval.sh                    # one-click entry: bash run_eval.sh
+├── eval/
+│   └── run_dynsess_eval.py        # 3-stage eval pipeline (generate → format → judge)
+├── prompt/
+│   └── dynsess_rubrics.py         # the four multi-turn judge rubrics
 ├── training/                      # SFT/DPO → multi-turn training-data construction
 │   ├── convert_to_train.py
 │   ├── convert_dpo_to_train.py
@@ -106,9 +109,9 @@ export DYNS_EVAL_API_TOKEN=<your-judge-token>
 ## 🚀 Train & Eval
 
 ### Evaluate a role-playing model
-Edit the config block at the top of [`run_dynsess_eval.py`](./run_dynsess_eval.py) to point `LOCAL_VLLM_URL` / `LOCAL_MODEL_NAME` at your model, then:
+Edit the config block at the top of [`eval/run_dynsess_eval.py`](./eval/run_dynsess_eval.py) to point `LOCAL_VLLM_URL` / `LOCAL_MODEL_NAME` at your model, then:
 ```shell
-python run_dynsess_eval.py
+bash run_eval.sh        # or: python eval/run_dynsess_eval.py
 ```
 Outputs land under `./evaluate/` (generated sessions → merged formats → per-record scores + statistics). The pipeline is **resumable** — re-running continues from `progress.json`.
 
@@ -124,7 +127,7 @@ python convert_dpo_to_session_merge.py              # DPO → multi-turn (canoni
 [--GENERATE_MODE {continue,scratch}] [--BATCH_SIZE] [--STAGE1_MAX_WORKERS] [--MAX_WORKERS] [--SKIP_STAGE1]
 [--LOCAL_MODEL_NAME] [--ASSISTANT_MODEL {local,api}] [--LOCAL_VLLM_URL] [--EVAL_API_URL]
 ```
-**Note**: edit the config block at the top of `run_dynsess_eval.py` for <a href="#Parameter">parameter</a> modification.
+**Note**: edit the config block at the top of `eval/run_dynsess_eval.py` for <a href="#Parameter">parameter</a> modification.
 
 ## 🤝 Cite
 Please consider citing this paper if you use the ```code``` or ```data``` from our work. Thanks a lot :)

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 一键启动脚本：对话生成 + 格式转换 + 自动评估
-Usage: python run_pipeline.py
+Usage: bash run_eval.sh  (或 python eval/run_dynsess_eval.py)
 """
 
 import json
@@ -29,29 +29,36 @@ LOCAL_MODEL_NAME = "persona_general"                           # 本地VLLM模�
 
 ARK_API_KEY = os.environ.get("ARK_API_KEY", "")           # 豆包API Key（用户模拟器）
 USER_MODEL_NAME = "doubao-1-5-pro-32k-character-250715"        # 豆包用户模拟器模型
+USER_API_BASE_URL = os.environ.get("USER_API_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")  # 用户模拟器API Base URL
 
 # ─────────────── Assistant模型配置（角色扮演模型选择） ───────────────
 ASSISTANT_MODEL = "local"  # 选择assistant模型类型: "local" = 本地VLLM模型, "api" = 外部API模型
 
 # 外部API模型配置（仅当 ASSISTANT_MODEL = "api" 时生效）
 ASSISTANT_API_KEY = os.environ.get("ASSISTANT_API_KEY", os.environ.get("ARK_API_KEY", ""))                        # 外部API Key
-ASSISTANT_API_BASE_URL = "https://ark.cn-beijing.volces.com/api/v3"  # 外部API Base URL
+ASSISTANT_API_BASE_URL = os.environ.get("ASSISTANT_API_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")  # 外部API Base URL
 ASSISTANT_API_MODEL_NAME = "doubao-1-5-pro-32k-character-250715"     # 外部API模型名称
+# 角色扮演API鉴权方式: "bearer" = 标准 OpenAI 兼容（默认）, "signed" = appId/appKey/projectId 签名网关
+ASSISTANT_API_AUTH = os.environ.get("ASSISTANT_API_AUTH", "bearer")
 
 # ─────────────── 字数限制模型配置 ───────────────
 # 在此列表中的模型，会在 system prompt 中加入字数限制（回复不超过50个字）
 WORD_LIMIT_MODELS = ["gpt-5.1", "gpt-5.4", "gemini-3-pro-preview"]  # 需要限制字数的模型列表
 WORD_LIMIT_PROMPT = "你的本次回复，希望控制字数在50个字左右"  # 字数限制提示语
 
-EVAL_API_URL = os.environ.get("EVAL_API_URL", "https://aigc-api.fuxi.netease.com/v1/chat/completions")  # 评估API地址（可用环境变量覆盖）
+EVAL_API_URL = os.environ.get("EVAL_API_URL", "")  # 评估API地址：OpenAI 兼容的评判端点（需通过环境变量提供）
 EVAL_MODEL = "gemini-3-flash-preview"                                     # 评估模型
 EVAL_API_BEARER_TOKEN = os.environ.get("DYNS_EVAL_API_TOKEN", "")          # 评估API Token
 
+# ─────────────── 路径（基于仓库根目录，不依赖当前工作目录） ───────────────
+# 本脚本位于 <repo_root>/eval/，因此仓库根目录 = 脚本所在目录的上一级
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # ─────────────── 输入文件（需要用户提供） ───────────────
 GENERATE_MODE = "continue"  # 对话生成模式: "continue" = 续写模式, "scratch" = 从零开始
-HISTORY_FILE = "./data/test_dialogue_0424.jsonl"           # 续写模式 - 历史对话输入文件
-PERSONA_FILE = "./data/personas.json"        # 从零模式 - 人设数据文件（需用户提供，格式: [{"model_persona":..., "user_persona":...}]）
-JUDGE_PROMPT_FILE = "./dynsess_rubrics.py"                     # 评判Prompt文件
+HISTORY_FILE = os.path.join(REPO_ROOT, "data", "test_dialogue_0424.jsonl")           # 续写模式 - 历史对话输入文件
+PERSONA_FILE = os.path.join(REPO_ROOT, "data", "personas.json")        # 从零模式 - 人设数据文件（需用户提供，格式: [{"model_persona":..., "user_persona":...}]）
+JUDGE_PROMPT_FILE = os.path.join(REPO_ROOT, "prompt", "dynsess_rubrics.py")                     # 评判Prompt文件
 
 # ─────────────── 运行参数 ───────────────
 MAX_WORKERS = 10      # 评估并发线程数
@@ -63,11 +70,11 @@ STAGE1_MAX_WORKERS = 10   # Stage1 对话生成并发线程数
 
 # ─────────────── 跳过Stage1配置 ───────────────
 SKIP_STAGE1 = False  # 是否跳过Stage1（对话生成），直接从Stage2开始
-PRE_GENERATE_OUTPUT_FILE = "./evaluate/generate/dialogues_persona_general_20260319_114616.json"  # 跳过Stage1时，使用此文件作为输入（Stage1的预生成结果）
-# 例如: PRE_GENERATE_OUTPUT_FILE = "./evaluate/generate/dialogues_persona_general_20260319_100000.json"
+PRE_GENERATE_OUTPUT_FILE = os.path.join(REPO_ROOT, "evaluate", "generate", "dialogues_persona_general_20260319_114616.json")  # 跳过Stage1时，使用此文件作为输入（Stage1的预生成结果）
+# 例如: PRE_GENERATE_OUTPUT_FILE = os.path.join(REPO_ROOT, "evaluate", "generate", "dialogues_persona_general_20260319_100000.json")
 
 # ─────────────── 输出根目录 ───────────────
-OUTPUT_ROOT = "./evaluate"
+OUTPUT_ROOT = os.path.join(REPO_ROOT, "evaluate")
 
 # ─────────────── 自动生成的输出路径（无需手动修改） ───────────────
 _RUN_TIMESTAMP = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -89,7 +96,7 @@ EVAL_LOG_FILE = os.path.join(EVAL_OUTPUT_DIR, f"eval_{_RUN_TAG}.log")
 # ╚══════════════════════════════════════════════════════════════════╝
 
 ark_client = OpenAI(
-    base_url='https://ark.cn-beijing.volces.com/api/v3',
+    base_url=USER_API_BASE_URL,
     api_key=ARK_API_KEY,
 )
 
@@ -179,46 +186,24 @@ def llm_call_local(messages, temperature=0.7, max_tokens=1024, max_retries=3):
     raise RuntimeError(last_error or "本地API调用失败（未知原因）")
 
 
-def llm_call_assistant_api(messages, temperature=0.7, max_tokens=1024):
-    """调用外部API模型（角色扮演）- 使用豆包API格式"""
-    if isinstance(messages, str):
-        messages = [{"role": "user", "content": messages}]
-    try:
-        response = assistant_api_client.chat.completions.create(
-            model=ASSISTANT_API_MODEL_NAME,
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-            extra_body={
-                "caching": {"type": "enabled"},
-                "thinking": {"type": "disabled"}
-            }
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        error_msg = f"外部API调用出错: {e}"
-        print(error_msg)
-        raise RuntimeError(error_msg) from e
-
-
-# ─────────────── V2 API 配置（伏羲 API） ───────────────
+# ─────────────── 签名网关配置（ASSISTANT_API_AUTH=signed 时使用） ───────────────
 import hashlib
 import string
 
 V2_API_APP_ID = os.environ.get("V2_API_APP_ID", "")
 V2_API_APP_KEY = os.environ.get("V2_API_APP_KEY", "")
 V2_API_PROJECT_ID = os.environ.get("V2_API_PROJECT_ID", "")
-V2_API_URL = "https://aigc-api.fuxi.netease.com/v1/chat/completions"
+V2_API_URL = os.environ.get("V2_API_URL", "")  # 签名网关地址（ASSISTANT_API_AUTH=signed 时需通过环境变量提供）
 V2_API_MODEL_NAME = "gemini-3-flash-preview"  # 默认模型名，可以通过参数覆盖
 
 
 def _v2_signed_headers(app_id=V2_API_APP_ID, app_key=V2_API_APP_KEY, project_id=V2_API_PROJECT_ID):
-    """生成 V2 API (伏羲 API) 所需的签名头"""
+    """生成签名网关所需的签名头（appId/appKey/projectId + MD5 签名）"""
     nonce = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
     timestamp = str(int(time.time()))
     str2sign = f"appId={app_id}&nonce={nonce}&timestamp={timestamp}&appkey={app_key}"
     sign = hashlib.md5(str2sign.encode('utf-8')).hexdigest().upper()
-    
+
     return {
         "appId": app_id,
         "nonce": nonce,
@@ -230,50 +215,41 @@ def _v2_signed_headers(app_id=V2_API_APP_ID, app_key=V2_API_APP_KEY, project_id=
     }
 
 
-def llm_call_assistant_api_v2(messages, temperature=0.7, max_tokens=1024, model_name=None):
+def llm_call_assistant_api(messages, temperature=0.7, max_tokens=1024, model_name=None):
     """
-    智能调用外部API模型（角色扮演）
-    - 如果是 doubao 模型，使用原来的豆包 API 格式
-    - 如果不是 doubao 模型，使用伏羲 V2 API 格式
-    
+    调用外部API模型（角色扮演），按 ASSISTANT_API_AUTH 选择鉴权方式：
+    - "bearer"（默认）：标准 OpenAI 兼容接口（assistant_api_client）
+    - "signed"：appId/appKey/projectId 签名网关（V2_API_URL）
+
     Args:
         messages: 消息列表
         temperature: 温度参数
         max_tokens: 最大 token 数
         model_name: 模型名称，如果为 None 则使用 ASSISTANT_API_MODEL_NAME
-    
+
     Returns:
         模型回复内容
     """
     if isinstance(messages, str):
         messages = [{"role": "user", "content": messages}]
-    
-    # 确定使用的模型名称
+
     actual_model_name = model_name if model_name else ASSISTANT_API_MODEL_NAME
-    
-    # 判断是否是 doubao 模型
-    is_doubao_model = "doubao" in actual_model_name.lower()
-    
-    if is_doubao_model:
-        # 使用原来的豆包 API
-        try:
-            response = assistant_api_client.chat.completions.create(
-                model=actual_model_name,
-                messages=messages,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                extra_body={
-                    "caching": {"type": "enabled"},
-                    "thinking": {"type": "disabled"}
-                }
-            )
-            return response.choices[0].message.content
-        except Exception as e:
-            error_msg = f"豆包API调用出错: {e}"
-            print(error_msg)
-            raise RuntimeError(error_msg) from e
-    else:
-        # 使用伏羲 V2 API
+
+    # gemini3 系列模型启用轻度思考
+    extra_body = {
+        "caching": {"type": "enabled"},
+        "thinking": {"type": "disabled"}
+    }
+    if "gemini3" in actual_model_name.lower():
+        extra_body["thinkingConfig"] = {
+            "includeThoughts": True,
+            "thinkingLevel": "low",
+        }
+
+    if ASSISTANT_API_AUTH == "signed":
+        # 签名网关
+        if not V2_API_URL:
+            raise RuntimeError("ASSISTANT_API_AUTH=signed 需要通过环境变量 V2_API_URL 提供签名网关地址")
         headers = _v2_signed_headers()
         body = {
             "max_tokens": max_tokens,
@@ -283,26 +259,38 @@ def llm_call_assistant_api_v2(messages, temperature=0.7, max_tokens=1024, model_
             "messages": messages,
             "stream": False,
         }
-
         if "gemini3" in actual_model_name.lower():
-             body['thinkingConfig'] = {
-                   "includeThoughts": True,
-                   "thinkingLevel": "low",
-               }
-
-        
+            body['thinkingConfig'] = {
+                "includeThoughts": True,
+                "thinkingLevel": "low",
+            }
         try:
             response = requests.post(V2_API_URL, json=body, headers=headers, timeout=60)
             data = response.json()
             if 'choices' in data and data['choices']:
                 return data['choices'][0]['message']['content']
-            error_msg = f"V2 API 返回异常: {json.dumps(data, ensure_ascii=False)[:500]}"
+            error_msg = f"签名网关返回异常: {json.dumps(data, ensure_ascii=False)[:500]}"
             print(error_msg)
             raise RuntimeError(error_msg)
         except RuntimeError:
             raise
         except Exception as e:
-            error_msg = f"V2 API调用出错: {e}"
+            error_msg = f"签名网关调用出错: {e}"
+            print(error_msg)
+            raise RuntimeError(error_msg) from e
+    else:
+        # 标准 OpenAI 兼容接口（bearer）
+        try:
+            response = assistant_api_client.chat.completions.create(
+                model=actual_model_name,
+                messages=messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                extra_body=extra_body,
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            error_msg = f"外部API调用出错: {e}"
             print(error_msg)
             raise RuntimeError(error_msg) from e
 
@@ -365,16 +353,14 @@ def role_play_chat(messages, persona_info, debug=False):
     
     api_messages = [{"role": "system", "content": system_prompt}]
     api_messages.extend(messages)
-    print(api_messages)
-    
+
     # 根据配置选择调用本地模型或外部API模型
     if ASSISTANT_MODEL == "api":
-        # 使用 v2 函数：自动判断 doubao 模型用原 API，其他模型用伏羲 V2 API
-        response = llm_call_assistant_api_v2(api_messages, temperature=0.7, max_tokens=1024)
+        # 外部API：按 ASSISTANT_API_AUTH 选择 bearer / signed 鉴权
+        response = llm_call_assistant_api(api_messages, temperature=0.7, max_tokens=1024)
     else:  # 默认使用本地模型
         response = llm_call_local(api_messages, temperature=0.7, max_tokens=1024)
-    
-    print("response:", response)
+
     if debug:
         print(f"[DEBUG] 角色回复: {response}")
     return response
@@ -535,16 +521,13 @@ def stage1_generate():
             history_dialogues = [json.loads(line) for line in f if line.strip()]
         print(f"加载了 {len(history_dialogues)} 个历史对话")
 
-        # fake 逻辑
-        history_dialogues = history_dialogues[:BATCH_SIZE]
-
         existing_data = []
         if os.path.exists(GENERATE_OUTPUT_FILE):
             try:
                 with open(GENERATE_OUTPUT_FILE, 'r', encoding='utf-8') as f:
                     existing_data = json.load(f)
                 print(f"已有 {len(existing_data)} 个已处理对话")
-            except:
+            except Exception:
                 existing_data = []
 
         start_idx = len(existing_data)
@@ -634,7 +617,7 @@ def stage1_generate():
             try:
                 with open(GENERATE_OUTPUT_FILE, 'r', encoding='utf-8') as f:
                     existing_data = json.load(f)
-            except:
+            except Exception:
                 existing_data = []
 
         start_idx = len(existing_data)
@@ -858,7 +841,7 @@ def extract_json_from_response(response):
         return None
     try:
         return json.loads(response)
-    except:
+    except Exception:
         pass
 
     json_candidates = []
@@ -875,12 +858,12 @@ def extract_json_from_response(response):
     for s in json_candidates:
         try:
             return json.loads(s)
-        except:
+        except Exception:
             pass
         if '\\n' in s or '\\"' in s:
             try:
                 return json.loads(s.encode().decode('unicode_escape'))
-            except:
+            except Exception:
                 pass
 
     # 正则兜底
@@ -893,7 +876,7 @@ def extract_json_from_response(response):
                 if 1 <= s <= 5:
                     result['score'] = s
                     break
-            except:
+            except Exception:
                 pass
     for pat in [r'"reason"\s*:\s*"([^"]+)"', r'reason["\s:]+([^,}]+)']:
         m = re.search(pat, response, re.DOTALL)
