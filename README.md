@@ -1,14 +1,14 @@
 # DynSess
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
-[![EMNLP](https://img.shields.io/badge/EMNLP-2026-%23f1592a?labelColor=%23003973&color=%23be1c1a)](https://2026.emnlp.org/)
+[![Findings of EMNLP 2026](https://img.shields.io/badge/Findings_of_EMNLP-2026-%23f1592a?labelColor=%23003973&color=%23be1c1a)](https://2026.emnlp.org/)
  - [*DynSess: Dynamic Session-Level Evaluation and Optimization Framework for Role-Playing Agents*](https://arxiv.org/)
 
-> Official code for **"DynSess: Dynamic Session-Level Evaluation and Optimization Framework for Role-Playing Agents"** (EMNLP 2026). Role-playing with LLMs is a **session-level** task: an agent must sustain character identity and interaction quality across extended, multi-turn conversations. **DynSess** couples evaluation and optimization through a shared session-level reward.
+> Official code for **"DynSess: Dynamic Session-Level Evaluation and Optimization Framework for Role-Playing Agents"** (Findings of EMNLP 2026). Role-playing with LLMs is a **session-level** task: an agent must sustain character identity and interaction quality across extended, multi-turn conversations. **DynSess** couples evaluation and optimization through a shared session-level reward.
 
 ## 🔔 News
-- **`2026-08`** We release the [[Repo](https://github.com/tangbupt/DynSess)] for our **`EMNLP 2026`** paper.
-- **`2026-05`** Our paper: *DynSess: Dynamic Session-Level Evaluation and Optimization Framework for Role-Playing Agents* was accepted by **`EMNLP 2026`**.
+- **`2026-08`** We release the [[Repo](https://github.com/tangbupt/DynSess)] for our **`Findings of EMNLP 2026`** paper.
+- **`2026-08`** Our paper: *DynSess: Dynamic Session-Level Evaluation and Optimization Framework for Role-Playing Agents* was accepted to **`Findings of EMNLP 2026`**.
 
 ## 🌈 Framework
 ![Framework](./assets/figures/framework.png)
@@ -133,7 +133,7 @@ Please consider citing this paper if you use the ```code``` or ```data``` from o
 @inproceedings{dynsess2026,
   title     = {DynSess: Dynamic Session-Level Evaluation and Optimization Framework for Role-Playing Agents},
   author    = {Zhang, Rongsheng and Tang, Jiji and Ren, Junnan and Bao, Zuyi and Chen, Weijie and Hu, Ruofan and Lv, Tangjie and Zhao, Zhou and Zhang, Yan},
-  booktitle = {Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026},
   year      = {2026}
 }
 ```
