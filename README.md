@@ -49,17 +49,17 @@
 ## 📦 Data Download
 - **Personas.** 2,100 character personas (2,000 train / 100 held-out test), spanning celebrities, literary/media, game, social, and non-human characters.
 - **Seed sessions.** 100 seed persona+history records in [`data/test_dialogue_0424.jsonl`](./data/test_dialogue_0424.jsonl) (~841 KB, `continue`-mode input).
-- **Training-format samples.** 2-line examples of each SFT/DPO format in [`data/train_samples/`](./data/train_samples) so you can prepare your own corpora.
+- **Training-format samples.** One 2-line final-format example each for SFT and DSPO (session-level prefix-chain merge) in [`data/train_samples/`](./data/train_samples) — each record carries a non-trainable persona block plus a `dialogues` list with per-turn `trainable` flags, so you can mirror the schema for your own corpora.
 
-> The full SFT/DPO corpora (~512 MB) and the `persona_general` checkpoint are **not** bundled (size). Provide your own training data under `train_data/` and run the `training/` scripts to reproduce. The shipped auto-eval stats across 89 runs are in [`results/eval_summary.json`](./results/eval_summary.json) (overall mean 4.18).
+> The full SFT/DPO corpora (~512 MB) and the `persona_general` checkpoint are **not** bundled (size). Prepare your own data following the [`data/train_samples/`](./data/train_samples) schema. The shipped auto-eval stats across 89 runs are in [`results/eval_summary.json`](./results/eval_summary.json) (overall mean 4.18).
 
 ## 📕 Code Path
 
 #### Code Structures
 There are three parts in the code.
-- **`eval/run_dynsess_eval.py`**: the 3-stage eval pipeline (generate → format → rubric-anchored judge). One-click entry: **`bash run_eval.sh`** at the repo root.
-- **`prompt/dynsess_rubrics.py`**: the four multi-turn judge rubrics (Interactive Ability / Human-likeness / Role Consistency / Contextual Coherence, 1–5, anchored at 3).
-- **`training/`**: SFT/DPO → multi-turn session-level training-data construction (`convert_dpo_to_session_merge.py` is the canonical prefix-chain merge).
+- **`eval/`**: the 3-stage eval pipeline — `run_dynsess_eval.py` (entry/orchestrator) + `config.py` (shared config) + `llm.py` (unified `LLMClient`: one `model_name` + `chat(messages)` API, all auth/model selection inside) + one module per stage (`stage1_generate.py` / `stage2_format.py` / `stage3_evaluate.py`). One-click entry: **`bash run_eval.sh`** at the repo root.
+- **`prompt/`**: the judge rubrics, split by level — `session_level.py` (multi-turn, the pipeline default) and `turn_level.py` (single-turn) — plus `user_sim_prompt.py`, the user-simulator prompt templates (`passive` / `balanced` / `proactive` styles, isolated from stage1; select via `USER_SIM_STYLE`).
+- **`data/train_samples/`**: one 2-line final-format example each for SFT and DSPO — a non-trainable persona block (`dynamic_text`) plus a `dialogues` list with per-turn `trainable` flags (session-level prefix-chain merge for DSPO). Mirror this schema to build your own corpora.
 
 <details>
 <summary><b>Full tree</b></summary>
@@ -68,17 +68,19 @@ There are three parts in the code.
 DynSess/
 ├── run_eval.sh                    # one-click entry: bash run_eval.sh
 ├── eval/
-│   └── run_dynsess_eval.py        # 3-stage eval pipeline (generate → format → judge)
+│   ├── run_dynsess_eval.py        # entry: orchestrates the 3 stages
+│   ├── config.py                  # shared config (model / paths / LLMClient instances)
+│   ├── llm.py                     # unified LLMClient (auth + model selection, one chat() API)
+│   ├── stage1_generate.py         # stage 1: dialogue generation
+│   ├── stage2_format.py           # stage 2: format conversion
+│   └── stage3_evaluate.py         # stage 3: rubric-anchored judge
 ├── prompt/
-│   └── dynsess_rubrics.py         # the four multi-turn judge rubrics
-├── training/                      # SFT/DPO → multi-turn training-data construction
-│   ├── convert_to_train.py
-│   ├── convert_dpo_to_train.py
-│   ├── convert_dpo_to_train_dedup.py
-│   └── convert_dpo_to_session_merge.py   # canonical prefix-chain merge
+│   ├── session_level.py           # multi-turn (session-level) judge rubrics
+│   ├── turn_level.py              # single-turn (turn-level) judge rubrics
+│   └── user_sim_prompt.py         # user-simulator prompt templates (passive/balanced/proactive)
 ├── data/
 │   ├── test_dialogue_0424.jsonl              # 100 seed sessions
-│   └── train_samples/                        # 2-line samples of each training format
+│   └── train_samples/                        # final-format SFT/DSPO samples (2-line each)
 ├── results/                       # aggregate eval stats + example result
 ├── assets/figures/                # figures rendered from the paper
 ├── requirements.txt
@@ -115,16 +117,12 @@ bash run_eval.sh        # or: python eval/run_dynsess_eval.py
 ```
 Outputs land under `./evaluate/` (generated sessions → merged formats → per-record scores + statistics). The pipeline is **resumable** — re-running continues from `progress.json`.
 
-### Build training data
-```shell
-cd training
-python convert_to_train.py                          # SFT corpus
-python convert_dpo_to_session_merge.py              # DPO → multi-turn (canonical merge)
-```
+### Training-data format
+The conversion scripts and full corpora are not shipped (size). Each record in [`data/train_samples/`](./data/train_samples) is one final-format example — a non-trainable persona block (`dynamic_text`) plus a `dialogues` list where every turn carries a `trainable` flag (assistant turns train, user/history turns don't); DSPO uses the session-level prefix-chain merge. Mirror this schema to prepare your own SFT/DSPO corpora.
 
 ### [Parameter](#content)
 ```
-[--GENERATE_MODE {continue,scratch}] [--BATCH_SIZE] [--STAGE1_MAX_WORKERS] [--MAX_WORKERS] [--SKIP_STAGE1]
+[--GENERATE_MODE {continue,scratch}] [--USER_SIM_STYLE {passive,balanced,proactive}] [--BATCH_SIZE] [--STAGE1_MAX_WORKERS] [--MAX_WORKERS] [--SKIP_STAGE1]
 [--LOCAL_MODEL_NAME] [--ASSISTANT_MODEL {local,api}] [--LOCAL_VLLM_URL] [--EVAL_API_URL]
 ```
 **Note**: edit the config block at the top of `eval/run_dynsess_eval.py` for <a href="#Parameter">parameter</a> modification.
