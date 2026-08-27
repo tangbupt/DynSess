@@ -49,7 +49,7 @@
 ## 📦 Data Download
 - **Personas.** 2,100 character personas (2,000 train / 100 held-out test), spanning celebrities, literary/media, game, social, and non-human characters.
 - **Seed sessions.** 100 seed persona+history records in [`data/test_dialogue_0424.jsonl`](./data/test_dialogue_0424.jsonl) (~841 KB, `continue`-mode input).
-- **Training-format samples.** One 2-line final-format example each for SFT and DSPO (session-level prefix-chain merge) in [`data/train_samples/`](./data/train_samples) — each record carries a non-trainable persona block plus a `dialogues` list with per-turn `trainable` flags, so you can mirror the schema for your own corpora.
+- **Training-format samples.** 2-line final-format examples in [`data/train_samples/`](./data/train_samples): SFT (`sft_sample.jsonl`), DSPO with the session-level prefix-chain merge (`dpo_sample.jsonl`), and DSPO with the random multi-session merge (`dpo_random_merge_sample.jsonl`). Each record carries a non-trainable persona block plus a `dialogues` list with per-turn `trainable` flags, so you can mirror the schema for your own corpora.
 
 > The full SFT/DPO corpora (~512 MB) and the `persona_general` checkpoint are **not** bundled (size). Prepare your own data following the [`data/train_samples/`](./data/train_samples) schema. The shipped auto-eval stats across 89 runs are in [`results/eval_summary.json`](./results/eval_summary.json) (overall mean 4.18).
 
@@ -59,7 +59,7 @@
 There are three parts in the code.
 - **`eval/`**: the 3-stage eval pipeline — `run_dynsess_eval.py` (entry/orchestrator) + `config.py` (shared config) + `llm.py` (unified `LLMClient`: one `model_name` + `chat(messages)` API, all auth/model selection inside) + one module per stage (`stage1_generate.py` / `stage2_format.py` / `stage3_evaluate.py`). One-click entry: **`bash run_eval.sh`** at the repo root.
 - **`prompt/`**: the judge rubrics, split by level — `session_level.py` (multi-turn, the pipeline default) and `turn_level.py` (single-turn) — plus `user_sim_prompt.py`, the user-simulator prompt templates (`passive` / `balanced` / `proactive` styles, isolated from stage1; select via `USER_SIM_STYLE`).
-- **`data/train_samples/`**: one 2-line final-format example each for SFT and DSPO — a non-trainable persona block (`dynamic_text`) plus a `dialogues` list with per-turn `trainable` flags (session-level prefix-chain merge for DSPO). Mirror this schema to build your own corpora.
+- **`data/train_samples/`**: 2-line final-format examples — SFT (`sft_sample.jsonl`), DSPO prefix-chain merge (`dpo_sample.jsonl`), and DSPO random multi-session merge (`dpo_random_merge_sample.jsonl`). Each is a non-trainable persona block (`dynamic_text`) plus a `dialogues` list with per-turn `trainable` flags. Mirror this schema to build your own corpora.
 
 <details>
 <summary><b>Full tree</b></summary>
@@ -80,7 +80,7 @@ DynSess/
 │   └── user_sim_prompt.py         # user-simulator prompt templates (passive/balanced/proactive)
 ├── data/
 │   ├── test_dialogue_0424.jsonl              # 100 seed sessions
-│   └── train_samples/                        # final-format SFT/DSPO samples (2-line each)
+│   └── train_samples/                        # final-format SFT + DSPO (prefix-chain & random-merge) samples
 ├── results/                       # aggregate eval stats + example result
 ├── assets/figures/                # figures rendered from the paper
 ├── requirements.txt
@@ -111,21 +111,21 @@ export DYNS_EVAL_API_TOKEN=<your-judge-token>
 ## 🚀 Train & Eval
 
 ### Evaluate a role-playing model
-Edit the config block at the top of [`eval/run_dynsess_eval.py`](./eval/run_dynsess_eval.py) to point `LOCAL_VLLM_URL` / `LOCAL_MODEL_NAME` at your model, then:
+Edit [`eval/config.py`](./eval/config.py) to point `LOCAL_VLLM_URL` / `LOCAL_MODEL_NAME` at your model, then:
 ```shell
 bash run_eval.sh        # or: python eval/run_dynsess_eval.py
 ```
 Outputs land under `./evaluate/` (generated sessions → merged formats → per-record scores + statistics). The pipeline is **resumable** — re-running continues from `progress.json`.
 
 ### Training-data format
-The conversion scripts and full corpora are not shipped (size). Each record in [`data/train_samples/`](./data/train_samples) is one final-format example — a non-trainable persona block (`dynamic_text`) plus a `dialogues` list where every turn carries a `trainable` flag (assistant turns train, user/history turns don't); DSPO uses the session-level prefix-chain merge. Mirror this schema to prepare your own SFT/DSPO corpora.
+The conversion scripts and full corpora are not shipped (size). Each record in [`data/train_samples/`](./data/train_samples) is one final-format example — a non-trainable persona block (`dynamic_text`) plus a `dialogues` list where every turn carries a `trainable` flag (assistant turns train, user/history turns don't). DSPO ships two merge variants: the session-level prefix-chain merge (`dpo_sample.jsonl`) and a random multi-session merge (`dpo_random_merge_sample.jsonl`). Mirror this schema to prepare your own SFT/DSPO corpora.
 
 ### [Parameter](#content)
 ```
 [--GENERATE_MODE {continue,scratch}] [--USER_SIM_STYLE {passive,balanced,proactive}] [--BATCH_SIZE] [--STAGE1_MAX_WORKERS] [--MAX_WORKERS] [--SKIP_STAGE1]
 [--LOCAL_MODEL_NAME] [--ASSISTANT_MODEL {local,api}] [--LOCAL_VLLM_URL] [--EVAL_API_URL]
 ```
-**Note**: edit the config block at the top of `eval/run_dynsess_eval.py` for <a href="#Parameter">parameter</a> modification.
+**Note**: edit [`eval/config.py`](./eval/config.py) for <a href="#Parameter">parameter</a> modification.
 
 ## 🤝 Cite
 Please consider citing this paper if you use the ```code``` or ```data``` from our work. Thanks a lot :)
